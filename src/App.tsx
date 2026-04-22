@@ -1,9 +1,15 @@
-import React from 'react'
+import { Routes, Route } from "react-router";
+import Write from "./components/Write";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div>
+      <Routes>
+        <Route path="/" element={<Write />} />
+        <Route path="/write" element={<Write />} />
+      </Routes>
+    </div>
+  );
+};
 
-export default App
+export default App;
