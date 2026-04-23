@@ -71,6 +71,8 @@ ul{
     gap: 10px;
 }
 
-li{
-    
+.button2{
+    font-size: 14px;
+    padding: 5px 8px;
+    background-color: rgb(42, 202, 2);
 }

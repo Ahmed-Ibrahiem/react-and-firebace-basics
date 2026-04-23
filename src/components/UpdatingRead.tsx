@@ -38,7 +38,13 @@ const UpdatingRead = () => {
             return (
               <li key={index}>
                 my name is: {data.name} ---- and my gmail is {data.email} , and
-                my id is {data.userId}
+                my id is {data.userId}{" "}
+                <button
+                  className="button2"
+                  onClick={() => navigate(`/update-write/${data.userId}`)}
+                >
+                  update
+                </button>
               </li>
             );
           })}

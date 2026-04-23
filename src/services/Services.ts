@@ -9,8 +9,23 @@ export const SaveUser = (
   return set(newUser, userData);
 };
 
+export const updateUser = (
+  db: Database,
+  userData: { name: string; email: string },
+  id: string,
+) => {
+  return set(ref(db, "users/" + id), userData);
+};
+
 export const GetUsers = async (db: Database) => {
   const dataRef = ref(db, "users");
+  const snapshot = await get(dataRef);
+
+  return snapshot;
+};
+
+export const GetUser = async (db: Database, id: string) => {
+  const dataRef = ref(db, "users/" + id);
   const snapshot = await get(dataRef);
 
   return snapshot;
