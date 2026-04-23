@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updatingReadingData } from "../services/Services";
+import { deleteUser, updatingReadingData } from "../services/Services";
 import { getDatabase } from "firebase/database";
 import app from "../firebaseConfig";
 import { useNavigate } from "react-router";
@@ -26,6 +26,14 @@ const UpdatingRead = () => {
     }
   };
 
+  const removeUser = (id: string) => {
+    deleteUser(db, id)
+      .then(() => {
+        alert("The user Has benn deleted");
+      })
+      .catch(() => alert("the deleted user proccess has been faild"));
+  };
+
   return (
     <main>
       <button onClick={updatingData}>Updating Read</button>
@@ -44,6 +52,15 @@ const UpdatingRead = () => {
                   onClick={() => navigate(`/update-write/${data.userId}`)}
                 >
                   update
+                </button>
+                <button
+                  className="button2"
+                  onClick={() => {
+                    data.userId && removeUser(data.userId);
+                    updatingData();
+                  }}
+                >
+                  delete
                 </button>
               </li>
             );

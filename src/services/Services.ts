@@ -1,4 +1,4 @@
-import { push, set, ref, get, type Database } from "firebase/database";
+import { push, set, ref, get, type Database, remove } from "firebase/database";
 
 export const SaveUser = (
   db: Database,
@@ -29,6 +29,12 @@ export const GetUser = async (db: Database, id: string) => {
   const snapshot = await get(dataRef);
 
   return snapshot;
+};
+
+export const deleteUser = async (db: Database, id: string) => {
+  const dataRef = ref(db, "users/" + id);
+
+  return remove(dataRef);
 };
 
 type user = {
