@@ -2,12 +2,15 @@ import { useState } from "react";
 import app from "../firebaseConfig";
 import { getDatabase } from "firebase/database";
 import { SaveUser } from "../services/Services";
+import { useNavigate } from "react-router";
 
 const db = getDatabase(app);
 
 const Write = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
+  const navigate = useNavigate()
 
   const addUser = () => {
     const userData = { name, email };
@@ -21,7 +24,9 @@ const Write = () => {
   };
 
   return (
-    <div>
+    <main>
+      <h1>Home</h1>
+
       <div>
         <label htmlFor="name">Your Name</label>
         <input
@@ -40,7 +45,13 @@ const Write = () => {
       </div>
       <br />
       <button onClick={addUser}>Save Data</button>
-    </div>
+
+      <br />
+      <div>
+        <button className="button1" onClick={()=> navigate("/read")}>Read Page</button>
+        <button className="button1" onClick={()=> navigate("/updating-read")}>Update Page</button>
+      </div>
+    </main>
   );
 };
 
