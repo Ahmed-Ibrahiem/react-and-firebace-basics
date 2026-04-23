@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import app from "../firebaseConfig";
 import { getDatabase } from "firebase/database";
-import { GetUser, SaveUser, updateUser } from "../services/Services";
+import { GetUser, updateUser } from "../services/Services";
 import { useNavigate, useParams } from "react-router";
 
 const db = getDatabase(app);
