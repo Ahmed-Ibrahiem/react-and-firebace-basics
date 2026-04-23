@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { GetUsers, updatingReadingData } from "../services/Services";
+import { updatingReadingData } from "../services/Services";
 import { getDatabase } from "firebase/database";
 import app from "../firebaseConfig";
+import { useNavigate } from "react-router";
 
 const db = getDatabase(app);
 
@@ -13,6 +14,7 @@ type user = {
 
 const UpdatingRead = () => {
   const [usersData, setUsersData] = useState<user[]>([]);
+  const navigate = useNavigate();
 
   const updatingData = async () => {
     try {
@@ -25,7 +27,7 @@ const UpdatingRead = () => {
   };
 
   return (
-    <div>
+    <main>
       <button onClick={updatingData}>Updating Read</button>
 
       {!usersData && <h1>No Data Here</h1>}
@@ -42,7 +44,18 @@ const UpdatingRead = () => {
           })}
         </ul>
       )}
-    </div>
+      <div>
+        <button className="button1" onClick={() => navigate("/read")}>
+          Read Page
+        </button>
+        <button className="button1" onClick={() => navigate("/updating-read")}>
+          Update Page
+        </button>
+        <button className="button1" onClick={() => navigate("/")}>
+          Home
+        </button>
+      </div>
+    </main>
   );
 };
 
