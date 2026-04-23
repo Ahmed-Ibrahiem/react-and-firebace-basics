@@ -15,3 +15,30 @@ export const GetUsers = async (db: Database) => {
 
   return snapshot;
 };
+
+type user = {
+  name: string;
+  email: string;
+  userId?: string;
+};
+
+export const updatingReadingData = async (db: Database) => {
+  const dbRef = ref(db, "users");
+
+  try {
+    const snapshot = await get(dbRef);
+    const usersData = snapshot.val();
+    if (!usersData) return [];
+
+    const tempororyArray: user[] = Object.keys(usersData).map((id) => {
+      return {
+        ...usersData[id],
+        userId: id,
+      };
+    });
+
+    return tempororyArray;
+  } catch {
+    throw Error("Something went wrong");
+  }
+};
